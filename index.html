@@ -3,45 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Russian Plural Cases</title>
+  <title>Comprehensive Russian Grammar Reference & Audio Guide</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Dark theme layout matching your image */
+    /* Dark aesthetic custom styles matching #0d0d0d theme */
     body {
       background-color: #0d0d0d;
-      color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      padding: 20px;
-      margin: 0;
+      color: #e5e7eb;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
-    .table-container {
-      overflow-x: auto;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-
-    th {
-      font-weight: 500;
-      color: #cccccc;
-      padding: 16px 12px;
-      border-bottom: 1px solid #2a2a2a;
-      font-size: 1.05rem;
-    }
-
-    td {
-      padding: 20px 12px;
-      border-bottom: 1px solid #1a1a1a;
-      vertical-align: top;
-      line-height: 1.5;
-    }
-
-    /* Red audio button styling */
+    /* Red circular audio button */
     .audio-btn {
       display: inline-flex;
       align-items: center;
@@ -49,13 +24,15 @@
       width: 18px;
       height: 18px;
       background-color: transparent;
-      border: 2px solid #e53935;
+      border: 2px solid #ef4444;
       border-radius: 50%;
       cursor: pointer;
       margin: 0 4px;
       padding: 0;
       vertical-align: middle;
-      transition: transform 0.1s ease, background-color 0.2s ease;
+      transition: all 0.15s ease-in-out;
+      position: relative;
+      flex-shrink: 0;
     }
 
     .audio-btn::before {
@@ -63,83 +40,1281 @@
       width: 0;
       height: 0;
       border-style: solid;
-      border-width: 4px 0 4px 6px;
-      border-color: transparent transparent transparent #e53935;
-      margin-left: 2px;
+      border-width: 3.5px 0 3.5px 5.5px;
+      border-color: transparent transparent transparent #ef4444;
+      margin-left: 1.5px;
+      transition: border-color 0.15s ease-in-out;
     }
 
     .audio-btn:hover {
-      transform: scale(1.15);
-      background-color: rgba(229, 57, 53, 0.2);
+      transform: scale(1.2);
+      background-color: rgba(239, 68, 68, 0.25);
+      box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
     }
 
     .audio-btn:active {
-      transform: scale(0.95);
+      transform: scale(0.92);
     }
 
-    .example-text {
-      font-style: italic;
-      color: #aaaaaa;
+    /* Custom Tooltip on Hover */
+    [data-tooltip] {
+      position: relative;
+    }
+
+    [data-tooltip]:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #1f2937;
+      color: #f3f4f6;
+      font-size: 0.72rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      padding: 4px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      z-index: 50;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      border: 1px solid #374151;
+      pointer-events: none;
+    }
+
+    /* Glassmorphism Sticky Nav */
+    .glass-nav {
+      background: rgba(13, 13, 13, 0.9);
+      backdrop-filter: blur(12px);
+    }
+
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #111827;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #374151;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4b5563;
     }
   </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col antialiased selection:bg-red-900 selection:text-white">
 
-<div class="table-container">
-  <table>
-    <thead>
-      <tr>
-        <th>Case</th>
-        <th>Universal Pattern for All Genders</th>
-        <th>Example</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Nominative Plural</strong></td>
-        <td>-ы / -и <button class="audio-btn" onclick="playAudio('audio/nom_pattern.mp3')"></button></td>
-        <td>
-          <button class="audio-btn" onclick="playAudio('audio/stoly.mp3')"></button> столы, 
-          <button class="audio-btn" onclick="playAudio('audio/knigi.mp3')"></button> книги
-        </td>
-      </tr>
-      <tr>
-        <td><strong>Accusative Plural</strong></td>
-        <td>
-          Inanimate = Nom Plural<br><br>
-          Animate = Gen Plural
-        </td>
-        <td>
-          увидел <button class="audio-btn" onclick="playAudio('audio/stoly.mp3')"></button> столы <span class="example-text">(tables)</span> / 
-          увидел <button class="audio-btn" onclick="playAudio('audio/studentov.mp3')"></button> студентов <span class="example-text">(students)</span>
-        </td>
-      </tr>
-      <tr>
-        <td><strong>Genitive Plural</strong></td>
-        <td>
-          Varied (-ов, -ей, or drop the vowel) <button class="audio-btn" onclick="playAudio('audio/gen_pattern.mp3')"></button>
-        </td>
-        <td>
-          столов, книг <span class="example-text">(zero ending)</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-40 glass-nav border-b border-gray-800 px-4 py-3 shadow-lg">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-4">
+      
+      <div class="flex items-center justify-between w-full lg:w-auto">
+        <h1 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+          <span class="text-red-500"><i class="fa-solid fa-book-bookmark"></i></span> Russian Grammar Interactive
+        </h1>
+        <button onclick="toggleAudioListModal()" class="lg:hidden text-xs bg-red-950/80 hover:bg-red-900 border border-red-700 text-red-200 px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-list-check"></i> Audio Checklist
+        </button>
+      </div>
 
-<script>
-  // Global player instance to prevent overlapping audio
-  let currentAudio = null;
+      <!-- Quick Section Jump Links -->
+      <nav class="flex items-center space-x-1 sm:space-x-2 text-xs overflow-x-auto w-full lg:w-auto pb-1 lg:pb-0 scrollbar-none">
+        <a href="#nouns" class="px-2.5 py-1.5 rounded-md hover:bg-gray-800 text-gray-300 hover:text-white transition whitespace-nowrap">Nouns</a>
+        <a href="#plural-patterns" class="px-2.5 py-1.5 rounded-md hover:bg-gray-800 text-gray-300 hover:text-white transition whitespace-nowrap">Plural Patterns</a>
+        <a href="#adjectives" class="px-2.5 py-1.5 rounded-md hover:bg-gray-800 text-gray-300 hover:text-white transition whitespace-nowrap">Adjectives</a>
+        <a href="#pronouns" class="px-2.5 py-1.5 rounded-md hover:bg-gray-800 text-gray-300 hover:text-white transition whitespace-nowrap">Pronouns</a>
+        <a href="#verbs" class="px-2.5 py-1.5 rounded-md hover:bg-gray-800 text-gray-300 hover:text-white transition whitespace-nowrap">Verbs & Aspects</a>
+        <a href="#prepositions" class="px-2.5 py-1.5 rounded-md hover:bg-gray-800 text-gray-300 hover:text-white transition whitespace-nowrap">Prepositions</a>
+      </nav>
 
-  function playAudio(filePath) {
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio.currentTime = 0;
+      <!-- Global Search & Audio List Button -->
+      <div class="flex items-center space-x-2 w-full lg:w-auto">
+        <div class="relative w-full lg:w-64">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-500 text-xs"></i>
+          <input type="text" id="searchInput" onkeyup="filterContent()" placeholder="Search grammar, Cyrillic, English..." class="w-full bg-gray-900 border border-gray-700 text-gray-200 text-xs rounded-lg pl-8 pr-3 py-2 focus:outline-none focus:border-red-500 transition">
+        </div>
+        <button onclick="toggleAudioListModal()" class="hidden lg:flex text-xs bg-red-950/70 hover:bg-red-900 border border-red-800 text-red-200 px-3 py-2 rounded-lg items-center gap-1.5 transition shrink-0">
+          <i class="fa-solid fa-file-audio"></i> Audio Checklist
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Notification Toast for Audio Actions -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-gray-900 border border-gray-700 text-white text-xs px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+    <i id="toastIcon" class="fa-solid fa-circle-info text-red-400 text-base"></i>
+    <div>
+      <p id="toastTitle" class="font-bold">Audio Status</p>
+      <p id="toastMessage" class="text-gray-400 font-mono text-[11px]">audio/filename.mp3</p>
+    </div>
+  </div>
+
+  <!-- Main Content Container -->
+  <main class="max-w-7xl mx-auto px-4 py-8 space-y-12 flex-grow w-full">
+
+    <!-- Overview Banner -->
+    <section class="bg-gradient-to-r from-gray-900 via-gray-900 to-red-950/40 border border-gray-800 rounded-2xl p-6 shadow-xl">
+      <div class="max-w-3xl space-y-2">
+        <span class="text-xs uppercase tracking-widest font-semibold text-red-400">Complete Audio-Enabled Grammar Guide</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Russian Declension & Conjugation Reference</h2>
+        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+          Hover over any red audio button <span class="audio-btn"></span> to display its required filename (e.g., <code class="text-red-300 bg-gray-800 px-1 py-0.5 rounded">audio/nom_sg_stol.mp3</code>). Click to play the audio file.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 1: NOUN DECLENSION MATRIX (Full Model Words across all 6 cases) -->
+    <section id="nouns" class="grammar-section space-y-6">
+      <div class="border-b border-gray-800 pb-3">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-cubes text-red-500"></i> Noun Cases: Core Example Words (Singular & Plural)
+        </h3>
+        <p class="text-xs text-gray-400 mt-1">
+          Demonstrated using <strong class="text-gray-200">стол</strong> (Masculine - table), <strong class="text-gray-200">книга</strong> (Feminine - book), and <strong class="text-gray-200">окно</strong> (Neuter - window) across all 6 cases with example sentences for every single form.
+        </p>
+      </div>
+
+      <!-- Singular Nouns Table -->
+      <div class="space-y-3">
+        <h4 class="text-sm font-semibold text-red-400 uppercase tracking-wider">Singular Noun Declension & Sentences</h4>
+        <div class="overflow-x-auto rounded-xl border border-gray-800 bg-[#1e1e1e] shadow-lg">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-gray-900/80 text-gray-400 text-xs uppercase tracking-wider border-b border-gray-800">
+              <tr>
+                <th class="py-3.5 px-4 font-semibold">Case</th>
+                <th class="py-3.5 px-4 font-semibold">Masculine: стол <button class="audio-btn" data-tooltip="audio/nom_sg_stol.mp3" onclick="playAudio('audio/nom_sg_stol.mp3')"></button> (table)</th>
+                <th class="py-3.5 px-4 font-semibold">Feminine: книга <button class="audio-btn" data-tooltip="audio/nom_sg_kniga.mp3" onclick="playAudio('audio/nom_sg_kniga.mp3')"></button> (book)</th>
+                <th class="py-3.5 px-4 font-semibold">Neuter: окно <button class="audio-btn" data-tooltip="audio/nom_sg_okno.mp3" onclick="playAudio('audio/nom_sg_okno.mp3')"></button> (window)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-800 text-gray-300">
+
+              <!-- Nominative Singular -->
+              <tr class="hover:bg-gray-800/40 transition search-row">
+                <td class="py-4 px-4 font-bold text-white whitespace-nowrap">
+                  Именительный<br><span class="text-xs font-normal text-gray-400">(Nominative - Subject)</span>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">стол <button class="audio-btn" data-tooltip="audio/nom_sg_stol.mp3" onclick="playAudio('audio/nom_sg_stol.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Стол стоит в комнате. <button class="audio-btn" data-tooltip="audio/nom_sg_stol_sent.mp3" onclick="playAudio('audio/nom_sg_stol_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">The table stands in the room.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">книга <button class="audio-btn" data-tooltip="audio/nom_sg_kniga.mp3" onclick="playAudio('audio/nom_sg_kniga.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Интересная книга лежит здесь. <button class="audio-btn" data-tooltip="audio/nom_sg_kniga_sent.mp3" onclick="playAudio('audio/nom_sg_kniga_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">An interesting book lies here.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">окно <button class="audio-btn" data-tooltip="audio/nom_sg_okno.mp3" onclick="playAudio('audio/nom_sg_okno.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Окно открыто. <button class="audio-btn" data-tooltip="audio/nom_sg_okno_sent.mp3" onclick="playAudio('audio/nom_sg_okno_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">The window is open.</div>
+                </td>
+              </tr>
+
+              <!-- Accusative Singular -->
+              <tr class="hover:bg-gray-800/40 transition search-row">
+                <td class="py-4 px-4 font-bold text-white whitespace-nowrap">
+                  Винительный<br><span class="text-xs font-normal text-gray-400">(Accusative - Direct Object)</span>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">стол <button class="audio-btn" data-tooltip="audio/acc_sg_stol.mp3" onclick="playAudio('audio/acc_sg_stol.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Я вижу стол. <button class="audio-btn" data-tooltip="audio/acc_sg_stol_sent.mp3" onclick="playAudio('audio/acc_sg_stol_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">I see the table.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">книгу <button class="audio-btn" data-tooltip="audio/acc_sg_knigu.mp3" onclick="playAudio('audio/acc_sg_knigu.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Я читаю книгу. <button class="audio-btn" data-tooltip="audio/acc_sg_knigu_sent.mp3" onclick="playAudio('audio/acc_sg_knigu_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">I am reading a book.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">окно <button class="audio-btn" data-tooltip="audio/acc_sg_okno.mp3" onclick="playAudio('audio/acc_sg_okno.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Она открывает окно. <button class="audio-btn" data-tooltip="audio/acc_sg_okno_sent.mp3" onclick="playAudio('audio/acc_sg_okno_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">She is opening the window.</div>
+                </td>
+              </tr>
+
+              <!-- Genitive Singular -->
+              <tr class="hover:bg-gray-800/40 transition search-row">
+                <td class="py-4 px-4 font-bold text-white whitespace-nowrap">
+                  Родительный<br><span class="text-xs font-normal text-gray-400">(Genitive - Possession/Absence)</span>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">стола <button class="audio-btn" data-tooltip="audio/gen_sg_stola.mp3" onclick="playAudio('audio/gen_sg_stola.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Около стола стоит стул. <button class="audio-btn" data-tooltip="audio/gen_sg_stola_sent.mp3" onclick="playAudio('audio/gen_sg_stola_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">A chair stands near the table.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">книги <button class="audio-btn" data-tooltip="audio/gen_sg_knigi.mp3" onclick="playAudio('audio/gen_sg_knigi.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">У меня нет книги. <button class="audio-btn" data-tooltip="audio/gen_sg_knigi_sent.mp3" onclick="playAudio('audio/gen_sg_knigi_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">I do not have the book.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">окна <button class="audio-btn" data-tooltip="audio/gen_sg_okna.mp3" onclick="playAudio('audio/gen_sg_okna.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Около окна стоит стол. <button class="audio-btn" data-tooltip="audio/gen_sg_okna_sent.mp3" onclick="playAudio('audio/gen_sg_okna_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">A table stands near the window.</div>
+                </td>
+              </tr>
+
+              <!-- Dative Singular -->
+              <tr class="hover:bg-gray-800/40 transition search-row">
+                <td class="py-4 px-4 font-bold text-white whitespace-nowrap">
+                  Дательный<br><span class="text-xs font-normal text-gray-400">(Dative - Indirect Object/Toward)</span>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">столу <button class="audio-btn" data-tooltip="audio/dat_sg_stolu.mp3" onclick="playAudio('audio/dat_sg_stolu.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Он подошёл к столу. <button class="audio-btn" data-tooltip="audio/dat_sg_stolu_sent.mp3" onclick="playAudio('audio/dat_sg_stolu_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">He walked up to the table.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">книге <button class="audio-btn" data-tooltip="audio/dat_sg_knige.mp3" onclick="playAudio('audio/dat_sg_knige.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Благодаря книге я всё понял. <button class="audio-btn" data-tooltip="audio/dat_sg_knige_sent.mp3" onclick="playAudio('audio/dat_sg_knige_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">Thanks to the book, I understood everything.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">окну <button class="audio-btn" data-tooltip="audio/dat_sg_oknu.mp3" onclick="playAudio('audio/dat_sg_oknu.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Она подошла к окну. <button class="audio-btn" data-tooltip="audio/dat_sg_oknu_sent.mp3" onclick="playAudio('audio/dat_sg_oknu_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">She walked up to the window.</div>
+                </td>
+              </tr>
+
+              <!-- Instrumental Singular -->
+              <tr class="hover:bg-gray-800/40 transition search-row">
+                <td class="py-4 px-4 font-bold text-white whitespace-nowrap">
+                  Творительный<br><span class="text-xs font-normal text-gray-400">(Instrumental - Means/With)</span>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">столом <button class="audio-btn" data-tooltip="audio/inst_sg_stolom.mp3" onclick="playAudio('audio/inst_sg_stolom.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Кот сидит под столом. <button class="audio-btn" data-tooltip="audio/inst_sg_stolom_sent.mp3" onclick="playAudio('audio/inst_sg_stolom_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">The cat is sitting under the table.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">книгой <button class="audio-btn" data-tooltip="audio/inst_sg_knigoy.mp3" onclick="playAudio('audio/inst_sg_knigoy.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Она занимается за книгой. <button class="audio-btn" data-tooltip="audio/inst_sg_knigoy_sent.mp3" onclick="playAudio('audio/inst_sg_knigoy_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">She is studying with the book.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">окном <button class="audio-btn" data-tooltip="audio/inst_sg_oknom.mp3" onclick="playAudio('audio/inst_sg_oknom.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Красивый сад за окном. <button class="audio-btn" data-tooltip="audio/inst_sg_oknom_sent.mp3" onclick="playAudio('audio/inst_sg_oknom_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">A beautiful garden is outside the window.</div>
+                </td>
+              </tr>
+
+              <!-- Prepositional Singular -->
+              <tr class="hover:bg-gray-800/40 transition search-row">
+                <td class="py-4 px-4 font-bold text-white whitespace-nowrap">
+                  Предложный<br><span class="text-xs font-normal text-gray-400">(Prepositional - Location/About)</span>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">на столе <button class="audio-btn" data-tooltip="audio/prep_sg_stole.mp3" onclick="playAudio('audio/prep_sg_stole.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Ключ лежит на столе. <button class="audio-btn" data-tooltip="audio/prep_sg_stole_sent.mp3" onclick="playAudio('audio/prep_sg_stole_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">The key lies on the table.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">о книге <button class="audio-btn" data-tooltip="audio/prep_sg_knige.mp3" onclick="playAudio('audio/prep_sg_knige.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Мы говорим о книге. <button class="audio-btn" data-tooltip="audio/prep_sg_knige_sent.mp3" onclick="playAudio('audio/prep_sg_knige_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">We are talking about the book.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">в окне <button class="audio-btn" data-tooltip="audio/prep_sg_okne.mp3" onclick="playAudio('audio/prep_sg_okne.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Свет горит в окне. <button class="audio-btn" data-tooltip="audio/prep_sg_okne_sent.mp3" onclick="playAudio('audio/prep_sg_okne_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">The light is on in the window.</div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Plural Nouns Table -->
+      <div class="space-y-3 pt-4">
+        <h4 class="text-sm font-semibold text-red-400 uppercase tracking-wider">Plural Noun Declension & Sentences</h4>
+        <div class="overflow-x-auto rounded-xl border border-gray-800 bg-[#1e1e1e] shadow-lg">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-gray-900/80 text-gray-400 text-xs uppercase tracking-wider border-b border-gray-800">
+              <tr>
+                <th class="py-3.5 px-4 font-semibold">Case</th>
+                <th class="py-3.5 px-4 font-semibold">Masculine: столы <button class="audio-btn" data-tooltip="audio/nom_pl_stoly.mp3" onclick="playAudio('audio/nom_pl_stoly.mp3')"></button> (tables)</th>
+                <th class="py-3.5 px-4 font-semibold">Feminine: книги <button class="audio-btn" data-tooltip="audio/nom_pl_knigi.mp3" onclick="playAudio('audio/nom_pl_knigi.mp3')"></button> (books)</th>
+                <th class="py-3.5 px-4 font-semibold">Neuter: окна <button class="audio-btn" data-tooltip="audio/nom_pl_okna.mp3" onclick="playAudio('audio/nom_pl_okna.mp3')"></button> (windows)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-800 text-gray-300">
+
+              <!-- Nominative Plural -->
+              <tr class="hover:bg-gray-800/40 transition search-row">
+                <td class="py-4 px-4 font-bold text-white whitespace-nowrap">Nominative Plural</td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">столы <button class="audio-btn" data-tooltip="audio/nom_pl_stoly.mp3" onclick="playAudio('audio/nom_pl_stoly.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Эти столы новые. <button class="audio-btn" data-tooltip="audio/nom_pl_stoly_sent.mp3" onclick="playAudio('audio/nom_pl_stoly_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">These tables are new.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">книги <button class="audio-btn" data-tooltip="audio/nom_pl_knigi.mp3" onclick="playAudio('audio/nom_pl_knigi.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Книги лежат тут. <button class="audio-btn" data-tooltip="audio/nom_pl_knigi_sent.mp3" onclick="playAudio('audio/nom_pl_knigi_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">The books lie here.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">окна <button class="audio-btn" data-tooltip="audio/nom_pl_okna.mp3" onclick="playAudio('audio/nom_pl_okna.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Окна чистые. <button class="audio-btn" data-tooltip="audio/nom_pl_okna_sent.mp3" onclick="playAudio('audio/nom_pl_okna_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">The windows are clean.</div>
+                </td>
+              </tr>
+
+              <!-- Accusative Plural -->
+              <tr class="hover:bg-gray-800/40 transition search-row">
+                <td class="py-4 px-4 font-bold text-white whitespace-nowrap">Accusative Plural</td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">столы <button class="audio-btn" data-tooltip="audio/acc_pl_stoly.mp3" onclick="playAudio('audio/acc_pl_stoly.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Мы покупаем столы. <button class="audio-btn" data-tooltip="audio/acc_pl_stoly_sent.mp3" onclick="playAudio('audio/acc_pl_stoly_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">We are buying tables.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">книги <button class="audio-btn" data-tooltip="audio/acc_pl_knigi.mp3" onclick="playAudio('audio/acc_pl_knigi.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Она берёт книги. <button class="audio-btn" data-tooltip="audio/acc_pl_knigi_sent.mp3" onclick="playAudio('audio/acc_pl_knigi_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">She is taking the books.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">окна <button class="audio-btn" data-tooltip="audio/acc_pl_okna.mp3" onclick="playAudio('audio/acc_pl_okna.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Они моют окна. <button class="audio-btn" data-tooltip="audio/acc_pl_okna_sent.mp3" onclick="playAudio('audio/acc_pl_okna_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">They are washing the windows.</div>
+                </td>
+              </tr>
+
+              <!-- Genitive Plural -->
+              <tr class="hover:bg-gray-800/40 transition search-row">
+                <td class="py-4 px-4 font-bold text-white whitespace-nowrap">Genitive Plural</td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">столов <button class="audio-btn" data-tooltip="audio/gen_pl_stolov.mp3" onclick="playAudio('audio/gen_pl_stolov.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Здесь много столов. <button class="audio-btn" data-tooltip="audio/gen_pl_stolov_sent.mp3" onclick="playAudio('audio/gen_pl_stolov_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">There are many tables here.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">книг <button class="audio-btn" data-tooltip="audio/gen_pl_knig.mp3" onclick="playAudio('audio/gen_pl_knig.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">У нас нет книг. <button class="audio-btn" data-tooltip="audio/gen_pl_knig_sent.mp3" onclick="playAudio('audio/gen_pl_knig_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">We have no books.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">окон <button class="audio-btn" data-tooltip="audio/gen_pl_okon.mp3" onclick="playAudio('audio/gen_pl_okon.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">В доме много окон. <button class="audio-btn" data-tooltip="audio/gen_pl_okon_sent.mp3" onclick="playAudio('audio/gen_pl_okon_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">There are many windows in the house.</div>
+                </td>
+              </tr>
+
+              <!-- Dative Plural -->
+              <tr class="hover:bg-gray-800/40 transition search-row">
+                <td class="py-4 px-4 font-bold text-white whitespace-nowrap">Dative Plural</td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">столам <button class="audio-btn" data-tooltip="audio/dat_pl_stolam.mp3" onclick="playAudio('audio/dat_pl_stolam.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Он подошёл к столам. <button class="audio-btn" data-tooltip="audio/dat_pl_stolam_sent.mp3" onclick="playAudio('audio/dat_pl_stolam_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">He walked up to the tables.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">книгам <button class="audio-btn" data-tooltip="audio/dat_pl_knigam.mp3" onclick="playAudio('audio/dat_pl_knigam.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Я рад этим книгам. <button class="audio-btn" data-tooltip="audio/dat_pl_knigam_sent.mp3" onclick="playAudio('audio/dat_pl_knigam_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">I am glad about these books.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">окнам <button class="audio-btn" data-tooltip="audio/dat_pl_oknam.mp3" onclick="playAudio('audio/dat_pl_oknam.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Они подошли к окнам. <button class="audio-btn" data-tooltip="audio/dat_pl_oknam_sent.mp3" onclick="playAudio('audio/dat_pl_oknam_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">They walked up to the windows.</div>
+                </td>
+              </tr>
+
+              <!-- Instrumental Plural -->
+              <tr class="hover:bg-gray-800/40 transition search-row">
+                <td class="py-4 px-4 font-bold text-white whitespace-nowrap">Instrumental Plural</td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">столами <button class="audio-btn" data-tooltip="audio/inst_pl_stolami.mp3" onclick="playAudio('audio/inst_pl_stolami.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Коты под столами. <button class="audio-btn" data-tooltip="audio/inst_pl_stolami_sent.mp3" onclick="playAudio('audio/inst_pl_stolami_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">Cats are under the tables.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">книгами <button class="audio-btn" data-tooltip="audio/inst_pl_knigami.mp3" onclick="playAudio('audio/inst_pl_knigami.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Полка с книгами. <button class="audio-btn" data-tooltip="audio/inst_pl_knigami_sent.mp3" onclick="playAudio('audio/inst_pl_knigami_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">A shelf with books.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">окнами <button class="audio-btn" data-tooltip="audio/inst_pl_oknami.mp3" onclick="playAudio('audio/inst_pl_oknami.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Цветы под окнами. <button class="audio-btn" data-tooltip="audio/inst_pl_oknami_sent.mp3" onclick="playAudio('audio/inst_pl_oknami_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">Flowers under the windows.</div>
+                </td>
+              </tr>
+
+              <!-- Prepositional Plural -->
+              <tr class="hover:bg-gray-800/40 transition search-row">
+                <td class="py-4 px-4 font-bold text-white whitespace-nowrap">Prepositional Plural</td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">о столах <button class="audio-btn" data-tooltip="audio/prep_pl_stolakh.mp3" onclick="playAudio('audio/prep_pl_stolakh.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Мы говорим о столах. <button class="audio-btn" data-tooltip="audio/prep_pl_stolakh_sent.mp3" onclick="playAudio('audio/prep_pl_stolakh_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">We are talking about the tables.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">о книгах <button class="audio-btn" data-tooltip="audio/prep_pl_knigakh.mp3" onclick="playAudio('audio/prep_pl_knigakh.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Он думает о книгах. <button class="audio-btn" data-tooltip="audio/prep_pl_knigakh_sent.mp3" onclick="playAudio('audio/prep_pl_knigakh_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">He is thinking about the books.</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-semibold text-white">об окнах <button class="audio-btn" data-tooltip="audio/prep_pl_oknakh.mp3" onclick="playAudio('audio/prep_pl_oknakh.mp3')"></button></div>
+                  <div class="text-xs text-gray-400 mt-1">Они думают об окнах. <button class="audio-btn" data-tooltip="audio/prep_pl_oknakh_sent.mp3" onclick="playAudio('audio/prep_pl_oknakh_sent.mp3')"></button></div>
+                  <div class="text-xs text-gray-500 italic">They are thinking about the windows.</div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: UNIVERSAL PLURAL PATTERNS -->
+    <section id="plural-patterns" class="grammar-section space-y-4">
+      <div class="border-b border-gray-800 pb-3">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-layer-group text-red-500"></i> Plural Case Ending Patterns (Universal Rule Chart)
+        </h3>
+        <p class="text-xs text-gray-400 mt-1">
+          Reference chart matching original layout for quick plural case suffix comparison.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-gray-800 bg-[#1e1e1e] shadow-lg">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-gray-900/80 text-gray-400 text-xs uppercase tracking-wider border-b border-gray-800">
+            <tr>
+              <th class="py-3.5 px-4 font-semibold">Case</th>
+              <th class="py-3.5 px-4 font-semibold">Universal Pattern for All Genders</th>
+              <th class="py-3.5 px-4 font-semibold">Examples with Sentences</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-800 text-gray-300">
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-4 px-4 font-bold text-white">Nominative Plural</td>
+              <td class="py-4 px-4">
+                <span class="font-mono text-red-400 font-semibold">-ы / -и</span>
+                <button class="audio-btn" data-tooltip="audio/pattern_nom_pl.mp3" onclick="playAudio('audio/pattern_nom_pl.mp3')"></button>
+              </td>
+              <td class="py-4 px-4">
+                столы <button class="audio-btn" data-tooltip="audio/nom_pl_stoly.mp3" onclick="playAudio('audio/nom_pl_stoly.mp3')"></button> (tables), 
+                книги <button class="audio-btn" data-tooltip="audio/nom_pl_knigi.mp3" onclick="playAudio('audio/nom_pl_knigi.mp3')"></button> (books)
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-4 px-4 font-bold text-white">Accusative Plural</td>
+              <td class="py-4 px-4">
+                Inanimate = Nominative Plural<br>
+                Animate = Genitive Plural
+              </td>
+              <td class="py-4 px-4">
+                увидел столы <button class="audio-btn" data-tooltip="audio/acc_pl_stoly_phrase.mp3" onclick="playAudio('audio/acc_pl_stoly_phrase.mp3')"></button> (saw tables) / 
+                увидел студентов <button class="audio-btn" data-tooltip="audio/acc_pl_studentov_phrase.mp3" onclick="playAudio('audio/acc_pl_studentov_phrase.mp3')"></button> (saw students)
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-4 px-4 font-bold text-white">Genitive Plural</td>
+              <td class="py-4 px-4">
+                Varied (<span class="font-mono text-red-400">-ов, -ей</span>, or drop ending vowel)
+                <button class="audio-btn" data-tooltip="audio/pattern_gen_pl.mp3" onclick="playAudio('audio/pattern_gen_pl.mp3')"></button>
+              </td>
+              <td class="py-4 px-4">
+                столов <button class="audio-btn" data-tooltip="audio/gen_pl_stolov.mp3" onclick="playAudio('audio/gen_pl_stolov.mp3')"></button> (tables), 
+                книг <button class="audio-btn" data-tooltip="audio/gen_pl_knig.mp3" onclick="playAudio('audio/gen_pl_knig.mp3')"></button> (books - zero ending)
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-4 px-4 font-bold text-white">Dative Plural</td>
+              <td class="py-4 px-4">
+                <span class="font-mono text-red-400 font-semibold">-ам / -ям</span>
+                <button class="audio-btn" data-tooltip="audio/pattern_dat_pl.mp3" onclick="playAudio('audio/pattern_dat_pl.mp3')"></button>
+              </td>
+              <td class="py-4 px-4">
+                столам <button class="audio-btn" data-tooltip="audio/dat_pl_stolam.mp3" onclick="playAudio('audio/dat_pl_stolam.mp3')"></button> (to tables), 
+                книгам <button class="audio-btn" data-tooltip="audio/dat_pl_knigam.mp3" onclick="playAudio('audio/dat_pl_knigam.mp3')"></button> (to books)
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-4 px-4 font-bold text-white">Instrumental Plural</td>
+              <td class="py-4 px-4">
+                <span class="font-mono text-red-400 font-semibold">-ами / -ями</span>
+                <button class="audio-btn" data-tooltip="audio/pattern_inst_pl.mp3" onclick="playAudio('audio/pattern_inst_pl.mp3')"></button>
+              </td>
+              <td class="py-4 px-4">
+                столами <button class="audio-btn" data-tooltip="audio/inst_pl_stolami.mp3" onclick="playAudio('audio/inst_pl_stolami.mp3')"></button> (with tables), 
+                книгами <button class="audio-btn" data-tooltip="audio/inst_pl_knigami.mp3" onclick="playAudio('audio/inst_pl_knigami.mp3')"></button> (with books)
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-4 px-4 font-bold text-white">Prepositional Plural</td>
+              <td class="py-4 px-4">
+                <span class="font-mono text-red-400 font-semibold">-ах / -ях</span>
+                <button class="audio-btn" data-tooltip="audio/pattern_prep_pl.mp3" onclick="playAudio('audio/pattern_prep_pl.mp3')"></button>
+              </td>
+              <td class="py-4 px-4">
+                о столах <button class="audio-btn" data-tooltip="audio/prep_pl_stolakh.mp3" onclick="playAudio('audio/prep_pl_stolakh.mp3')"></button> (about tables), 
+                о книгах <button class="audio-btn" data-tooltip="audio/prep_pl_knigakh.mp3" onclick="playAudio('audio/prep_pl_knigakh.mp3')"></button> (about books)
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 3: ADJECTIVES (Model Word: новый - new) -->
+    <section id="adjectives" class="grammar-section space-y-4">
+      <div class="border-b border-gray-800 pb-3">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-wand-magic-sparkles text-red-500"></i> Adjective Declension: новый <button class="audio-btn" data-tooltip="audio/adj_novyy.mp3" onclick="playAudio('audio/adj_novyy.mp3')"></button> (new)
+        </h3>
+        <p class="text-xs text-gray-400 mt-1">Full declension across all genders, numbers, and 6 cases with sentence examples.</p>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-gray-800 bg-[#1e1e1e] shadow-lg">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-gray-900/80 text-gray-400 text-xs uppercase tracking-wider border-b border-gray-800">
+            <tr>
+              <th class="py-3.5 px-4 font-semibold">Case</th>
+              <th class="py-3.5 px-4 font-semibold">Masculine</th>
+              <th class="py-3.5 px-4 font-semibold">Feminine</th>
+              <th class="py-3.5 px-4 font-semibold">Neuter</th>
+              <th class="py-3.5 px-4 font-semibold">Plural</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-800 text-gray-300">
+
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-4 px-4 font-bold text-white">Nominative</td>
+              <td class="py-4 px-4">
+                новый <button class="audio-btn" data-tooltip="audio/adj_novyy.mp3" onclick="playAudio('audio/adj_novyy.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">Это новый стол. <button class="audio-btn" data-tooltip="audio/adj_nom_masc_sent.mp3" onclick="playAudio('audio/adj_nom_masc_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">This is a new table.</div>
+              </td>
+              <td class="py-4 px-4">
+                новая <button class="audio-btn" data-tooltip="audio/adj_novaya.mp3" onclick="playAudio('audio/adj_novaya.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">Это новая книга. <button class="audio-btn" data-tooltip="audio/adj_nom_fem_sent.mp3" onclick="playAudio('audio/adj_nom_fem_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">This is a new book.</div>
+              </td>
+              <td class="py-4 px-4">
+                новое <button class="audio-btn" data-tooltip="audio/adj_novoye.mp3" onclick="playAudio('audio/adj_novoye.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">Это новое окно. <button class="audio-btn" data-tooltip="audio/adj_nom_neu_sent.mp3" onclick="playAudio('audio/adj_nom_neu_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">This is a new window.</div>
+              </td>
+              <td class="py-4 px-4">
+                новые <button class="audio-btn" data-tooltip="audio/adj_novyye.mp3" onclick="playAudio('audio/adj_novyye.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">Это новые книги. <button class="audio-btn" data-tooltip="audio/adj_nom_pl_sent.mp3" onclick="playAudio('audio/adj_nom_pl_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">These are new books.</div>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-4 px-4 font-bold text-white">Accusative</td>
+              <td class="py-4 px-4">
+                новый / нового <button class="audio-btn" data-tooltip="audio/adj_novogo.mp3" onclick="playAudio('audio/adj_novogo.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">Я вижу новый стол. <button class="audio-btn" data-tooltip="audio/adj_acc_masc_sent.mp3" onclick="playAudio('audio/adj_acc_masc_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">I see a new table.</div>
+              </td>
+              <td class="py-4 px-4">
+                новую <button class="audio-btn" data-tooltip="audio/adj_novuyu.mp3" onclick="playAudio('audio/adj_novuyu.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">Я читаю новую книгу. <button class="audio-btn" data-tooltip="audio/adj_acc_fem_sent.mp3" onclick="playAudio('audio/adj_acc_fem_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">I am reading a new book.</div>
+              </td>
+              <td class="py-4 px-4">
+                новое <button class="audio-btn" data-tooltip="audio/adj_novoye.mp3" onclick="playAudio('audio/adj_novoye.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">Я вижу новое окно. <button class="audio-btn" data-tooltip="audio/adj_acc_neu_sent.mp3" onclick="playAudio('audio/adj_acc_neu_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">I see a new window.</div>
+              </td>
+              <td class="py-4 px-4">
+                новые / новых <button class="audio-btn" data-tooltip="audio/adj_novykh.mp3" onclick="playAudio('audio/adj_novykh.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">Я вижу новые столы. <button class="audio-btn" data-tooltip="audio/adj_acc_pl_sent.mp3" onclick="playAudio('audio/adj_acc_pl_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">I see new tables.</div>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-4 px-4 font-bold text-white">Genitive</td>
+              <td class="py-4 px-4">
+                нового <button class="audio-btn" data-tooltip="audio/adj_novogo.mp3" onclick="playAudio('audio/adj_novogo.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">Около нового стола. <button class="audio-btn" data-tooltip="audio/adj_gen_masc_sent.mp3" onclick="playAudio('audio/adj_gen_masc_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">Near the new table.</div>
+              </td>
+              <td class="py-4 px-4">
+                новой <button class="audio-btn" data-tooltip="audio/adj_novoy.mp3" onclick="playAudio('audio/adj_novoy.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">У меня нет новой книги. <button class="audio-btn" data-tooltip="audio/adj_gen_fem_sent.mp3" onclick="playAudio('audio/adj_gen_fem_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">I don't have the new book.</div>
+              </td>
+              <td class="py-4 px-4">
+                нового <button class="audio-btn" data-tooltip="audio/adj_novogo.mp3" onclick="playAudio('audio/adj_novogo.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">Возле нового окна. <button class="audio-btn" data-tooltip="audio/adj_gen_neu_sent.mp3" onclick="playAudio('audio/adj_gen_neu_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">Near the new window.</div>
+              </td>
+              <td class="py-4 px-4">
+                новых <button class="audio-btn" data-tooltip="audio/adj_novykh.mp3" onclick="playAudio('audio/adj_novykh.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">Много новых книг. <button class="audio-btn" data-tooltip="audio/adj_gen_pl_sent.mp3" onclick="playAudio('audio/adj_gen_pl_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">A lot of new books.</div>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-4 px-4 font-bold text-white">Dative</td>
+              <td class="py-4 px-4">
+                новому <button class="audio-btn" data-tooltip="audio/adj_novomu.mp3" onclick="playAudio('audio/adj_novomu.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">К новому столу. <button class="audio-btn" data-tooltip="audio/adj_dat_masc_sent.mp3" onclick="playAudio('audio/adj_dat_masc_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">Toward the new table.</div>
+              </td>
+              <td class="py-4 px-4">
+                новой <button class="audio-btn" data-tooltip="audio/adj_novoy.mp3" onclick="playAudio('audio/adj_novoy.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">К новой книге. <button class="audio-btn" data-tooltip="audio/adj_dat_fem_sent.mp3" onclick="playAudio('audio/adj_dat_fem_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">Toward the new book.</div>
+              </td>
+              <td class="py-4 px-4">
+                новому <button class="audio-btn" data-tooltip="audio/adj_novomu.mp3" onclick="playAudio('audio/adj_novomu.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">К новому окну. <button class="audio-btn" data-tooltip="audio/adj_dat_neu_sent.mp3" onclick="playAudio('audio/adj_dat_neu_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">Toward the new window.</div>
+              </td>
+              <td class="py-4 px-4">
+                новым <button class="audio-btn" data-tooltip="audio/adj_novym.mp3" onclick="playAudio('audio/adj_novym.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">К новым книгам. <button class="audio-btn" data-tooltip="audio/adj_dat_pl_sent.mp3" onclick="playAudio('audio/adj_dat_pl_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">Toward the new books.</div>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-4 px-4 font-bold text-white">Instrumental</td>
+              <td class="py-4 px-4">
+                новым <button class="audio-btn" data-tooltip="audio/adj_novym.mp3" onclick="playAudio('audio/adj_novym.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">Под новым столом. <button class="audio-btn" data-tooltip="audio/adj_inst_masc_sent.mp3" onclick="playAudio('audio/adj_inst_masc_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">Under the new table.</div>
+              </td>
+              <td class="py-4 px-4">
+                новой <button class="audio-btn" data-tooltip="audio/adj_novoy.mp3" onclick="playAudio('audio/adj_novoy.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">С новой книгой. <button class="audio-btn" data-tooltip="audio/adj_inst_fem_sent.mp3" onclick="playAudio('audio/adj_inst_fem_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">With the new book.</div>
+              </td>
+              <td class="py-4 px-4">
+                новым <button class="audio-btn" data-tooltip="audio/adj_novym.mp3" onclick="playAudio('audio/adj_novym.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">За новым окном. <button class="audio-btn" data-tooltip="audio/adj_inst_neu_sent.mp3" onclick="playAudio('audio/adj_inst_neu_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">Outside the new window.</div>
+              </td>
+              <td class="py-4 px-4">
+                новыми <button class="audio-btn" data-tooltip="audio/adj_novymi.mp3" onclick="playAudio('audio/adj_novymi.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">С новыми книгами. <button class="audio-btn" data-tooltip="audio/adj_inst_pl_sent.mp3" onclick="playAudio('audio/adj_inst_pl_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">With new books.</div>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-4 px-4 font-bold text-white">Prepositional</td>
+              <td class="py-4 px-4">
+                о новом <button class="audio-btn" data-tooltip="audio/adj_novom.mp3" onclick="playAudio('audio/adj_novom.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">На новом столе. <button class="audio-btn" data-tooltip="audio/adj_prep_masc_sent.mp3" onclick="playAudio('audio/adj_prep_masc_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">On the new table.</div>
+              </td>
+              <td class="py-4 px-4">
+                о новой <button class="audio-btn" data-tooltip="audio/adj_novoy.mp3" onclick="playAudio('audio/adj_novoy.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">О новой книге. <button class="audio-btn" data-tooltip="audio/adj_prep_fem_sent.mp3" onclick="playAudio('audio/adj_prep_fem_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">About the new book.</div>
+              </td>
+              <td class="py-4 px-4">
+                о новом <button class="audio-btn" data-tooltip="audio/adj_novom.mp3" onclick="playAudio('audio/adj_novom.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">В новом окне. <button class="audio-btn" data-tooltip="audio/adj_prep_neu_sent.mp3" onclick="playAudio('audio/adj_prep_neu_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">In the new window.</div>
+              </td>
+              <td class="py-4 px-4">
+                о новых <button class="audio-btn" data-tooltip="audio/adj_novykh.mp3" onclick="playAudio('audio/adj_novykh.mp3')"></button>
+                <div class="text-xs text-gray-400 mt-1">О новых книгах. <button class="audio-btn" data-tooltip="audio/adj_prep_pl_sent.mp3" onclick="playAudio('audio/adj_prep_pl_sent.mp3')"></button></div>
+                <div class="text-xs text-gray-500 italic">About new books.</div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 4: PERSONAL PRONOUNS -->
+    <section id="pronouns" class="grammar-section space-y-4">
+      <div class="border-b border-gray-800 pb-3">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-user-group text-red-500"></i> Personal Pronouns Declension (All 6 Cases)
+        </h3>
+        <p class="text-xs text-gray-400 mt-1">Full declension of <strong>я</strong>, <strong>ты</strong>, <strong>он</strong>, <strong>она</strong>, <strong>мы</strong>, <strong>вы</strong>, <strong>они</strong> with sentence examples.</p>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-gray-800 bg-[#1e1e1e] shadow-lg">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-gray-900/80 text-gray-400 text-xs uppercase tracking-wider border-b border-gray-800">
+            <tr>
+              <th class="py-3 px-3">Pronoun</th>
+              <th class="py-3 px-3">Nominative</th>
+              <th class="py-3 px-3">Accusative</th>
+              <th class="py-3 px-3">Genitive</th>
+              <th class="py-3 px-3">Dative</th>
+              <th class="py-3 px-3">Instrumental</th>
+              <th class="py-3 px-3">Prepositional</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-800 text-gray-300">
+
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-3.5 px-3 font-bold text-white">I</td>
+              <td class="py-3.5 px-3">я <button class="audio-btn" data-tooltip="audio/pro_ya.mp3" onclick="playAudio('audio/pro_ya.mp3')"></button></td>
+              <td class="py-3.5 px-3">меня <button class="audio-btn" data-tooltip="audio/pro_menya.mp3" onclick="playAudio('audio/pro_menya.mp3')"></button></td>
+              <td class="py-3.5 px-3">меня <button class="audio-btn" data-tooltip="audio/pro_menya.mp3" onclick="playAudio('audio/pro_menya.mp3')"></button></td>
+              <td class="py-3.5 px-3">мне <button class="audio-btn" data-tooltip="audio/pro_mne.mp3" onclick="playAudio('audio/pro_mne.mp3')"></button></td>
+              <td class="py-3.5 px-3">мной <button class="audio-btn" data-tooltip="audio/pro_mnoy.mp3" onclick="playAudio('audio/pro_mnoy.mp3')"></button></td>
+              <td class="py-3.5 px-3">обо мне <button class="audio-btn" data-tooltip="audio/pro_obo_mne.mp3" onclick="playAudio('audio/pro_obo_mne.mp3')"></button></td>
+            </tr>
+            <tr class="search-row bg-gray-950/40 text-xs border-b border-gray-800">
+              <td colspan="7" class="py-2 px-4 text-gray-400">
+                <strong>Sentence:</strong> Он знает меня <button class="audio-btn" data-tooltip="audio/pro_ya_sent1.mp3" onclick="playAudio('audio/pro_ya_sent1.mp3')"></button> (He knows me). / Он пишет мне <button class="audio-btn" data-tooltip="audio/pro_ya_sent2.mp3" onclick="playAudio('audio/pro_ya_sent2.mp3')"></button> (He is writing to me).
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-3.5 px-3 font-bold text-white">You (sg.)</td>
+              <td class="py-3.5 px-3">ты <button class="audio-btn" data-tooltip="audio/pro_ty.mp3" onclick="playAudio('audio/pro_ty.mp3')"></button></td>
+              <td class="py-3.5 px-3">тебя <button class="audio-btn" data-tooltip="audio/pro_tebya.mp3" onclick="playAudio('audio/pro_tebya.mp3')"></button></td>
+              <td class="py-3.5 px-3">тебя <button class="audio-btn" data-tooltip="audio/pro_tebya.mp3" onclick="playAudio('audio/pro_tebya.mp3')"></button></td>
+              <td class="py-3.5 px-3">тебе <button class="audio-btn" data-tooltip="audio/pro_tebe.mp3" onclick="playAudio('audio/pro_tebe.mp3')"></button></td>
+              <td class="py-3.5 px-3">тобой <button class="audio-btn" data-tooltip="audio/pro_toboy.mp3" onclick="playAudio('audio/pro_toboy.mp3')"></button></td>
+              <td class="py-3.5 px-3">о тебе <button class="audio-btn" data-tooltip="audio/pro_o_tebe.mp3" onclick="playAudio('audio/pro_o_tebe.mp3')"></button></td>
+            </tr>
+            <tr class="search-row bg-gray-950/40 text-xs border-b border-gray-800">
+              <td colspan="7" class="py-2 px-4 text-gray-400">
+                <strong>Sentence:</strong> Я слышу тебя <button class="audio-btn" data-tooltip="audio/pro_ty_sent1.mp3" onclick="playAudio('audio/pro_ty_sent1.mp3')"></button> (I hear you). / Я говорю о тебе <button class="audio-btn" data-tooltip="audio/pro_ty_sent2.mp3" onclick="playAudio('audio/pro_ty_sent2.mp3')"></button> (I speak about you).
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-3.5 px-3 font-bold text-white">He / It</td>
+              <td class="py-3.5 px-3">он <button class="audio-btn" data-tooltip="audio/pro_on.mp3" onclick="playAudio('audio/pro_on.mp3')"></button></td>
+              <td class="py-3.5 px-3">его <button class="audio-btn" data-tooltip="audio/pro_yego.mp3" onclick="playAudio('audio/pro_yego.mp3')"></button></td>
+              <td class="py-3.5 px-3">его <button class="audio-btn" data-tooltip="audio/pro_yego.mp3" onclick="playAudio('audio/pro_yego.mp3')"></button></td>
+              <td class="py-3.5 px-3">ему <button class="audio-btn" data-tooltip="audio/pro_yemu.mp3" onclick="playAudio('audio/pro_yemu.mp3')"></button></td>
+              <td class="py-3.5 px-3">им <button class="audio-btn" data-tooltip="audio/pro_im.mp3" onclick="playAudio('audio/pro_im.mp3')"></button></td>
+              <td class="py-3.5 px-3">о нём <button class="audio-btn" data-tooltip="audio/pro_o_nyom.mp3" onclick="playAudio('audio/pro_o_nyom.mp3')"></button></td>
+            </tr>
+            <tr class="search-row bg-gray-950/40 text-xs border-b border-gray-800">
+              <td colspan="7" class="py-2 px-4 text-gray-400">
+                <strong>Sentence:</strong> Мы ждём его <button class="audio-btn" data-tooltip="audio/pro_on_sent1.mp3" onclick="playAudio('audio/pro_on_sent1.mp3')"></button> (We are waiting for him). / Я даю ему книгу <button class="audio-btn" data-tooltip="audio/pro_on_sent2.mp3" onclick="playAudio('audio/pro_on_sent2.mp3')"></button> (I give him a book).
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-3.5 px-3 font-bold text-white">She</td>
+              <td class="py-3.5 px-3">она <button class="audio-btn" data-tooltip="audio/pro_ona.mp3" onclick="playAudio('audio/pro_ona.mp3')"></button></td>
+              <td class="py-3.5 px-3">её <button class="audio-btn" data-tooltip="audio/pro_yeyo.mp3" onclick="playAudio('audio/pro_yeyo.mp3')"></button></td>
+              <td class="py-3.5 px-3">её <button class="audio-btn" data-tooltip="audio/pro_yeyo.mp3" onclick="playAudio('audio/pro_yeyo.mp3')"></button></td>
+              <td class="py-3.5 px-3">ей <button class="audio-btn" data-tooltip="audio/pro_yey.mp3" onclick="playAudio('audio/pro_yey.mp3')"></button></td>
+              <td class="py-3.5 px-3">ей / ею <button class="audio-btn" data-tooltip="audio/pro_yeyu.mp3" onclick="playAudio('audio/pro_yeyu.mp3')"></button></td>
+              <td class="py-3.5 px-3">о ней <button class="audio-btn" data-tooltip="audio/pro_o_ney.mp3" onclick="playAudio('audio/pro_o_ney.mp3')"></button></td>
+            </tr>
+            <tr class="search-row bg-gray-950/40 text-xs border-b border-gray-800">
+              <td colspan="7" class="py-2 px-4 text-gray-400">
+                <strong>Sentence:</strong> Я вижу её <button class="audio-btn" data-tooltip="audio/pro_ona_sent1.mp3" onclick="playAudio('audio/pro_ona_sent1.mp3')"></button> (I see her). / Мы думаем о ней <button class="audio-btn" data-tooltip="audio/pro_ona_sent2.mp3" onclick="playAudio('audio/pro_ona_sent2.mp3')"></button> (We think about her).
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-3.5 px-3 font-bold text-white">We</td>
+              <td class="py-3.5 px-3">мы <button class="audio-btn" data-tooltip="audio/pro_my.mp3" onclick="playAudio('audio/pro_my.mp3')"></button></td>
+              <td class="py-3.5 px-3">нас <button class="audio-btn" data-tooltip="audio/pro_nas.mp3" onclick="playAudio('audio/pro_nas.mp3')"></button></td>
+              <td class="py-3.5 px-3">нас <button class="audio-btn" data-tooltip="audio/pro_nas.mp3" onclick="playAudio('audio/pro_nas.mp3')"></button></td>
+              <td class="py-3.5 px-3">нам <button class="audio-btn" data-tooltip="audio/pro_nam.mp3" onclick="playAudio('audio/pro_nam.mp3')"></button></td>
+              <td class="py-3.5 px-3">нами <button class="audio-btn" data-tooltip="audio/pro_nami.mp3" onclick="playAudio('audio/pro_nami.mp3')"></button></td>
+              <td class="py-3.5 px-3">о нас <button class="audio-btn" data-tooltip="audio/pro_o_nas.mp3" onclick="playAudio('audio/pro_o_nas.mp3')"></button></td>
+            </tr>
+            <tr class="search-row bg-gray-950/40 text-xs border-b border-gray-800">
+              <td colspan="7" class="py-2 px-4 text-gray-400">
+                <strong>Sentence:</strong> Они знают нас <button class="audio-btn" data-tooltip="audio/pro_my_sent1.mp3" onclick="playAudio('audio/pro_my_sent1.mp3')"></button> (They know us). / Они пишут нам <button class="audio-btn" data-tooltip="audio/pro_my_sent2.mp3" onclick="playAudio('audio/pro_my_sent2.mp3')"></button> (They write to us).
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-3.5 px-3 font-bold text-white">You (pl.)</td>
+              <td class="py-3.5 px-3">вы <button class="audio-btn" data-tooltip="audio/pro_vy.mp3" onclick="playAudio('audio/pro_vy.mp3')"></button></td>
+              <td class="py-3.5 px-3">вас <button class="audio-btn" data-tooltip="audio/pro_vas.mp3" onclick="playAudio('audio/pro_vas.mp3')"></button></td>
+              <td class="py-3.5 px-3">вас <button class="audio-btn" data-tooltip="audio/pro_vas.mp3" onclick="playAudio('audio/pro_vas.mp3')"></button></td>
+              <td class="py-3.5 px-3">вам <button class="audio-btn" data-tooltip="audio/pro_vam.mp3" onclick="playAudio('audio/pro_vam.mp3')"></button></td>
+              <td class="py-3.5 px-3">вами <button class="audio-btn" data-tooltip="audio/pro_vami.mp3" onclick="playAudio('audio/pro_vami.mp3')"></button></td>
+              <td class="py-3.5 px-3">о вас <button class="audio-btn" data-tooltip="audio/pro_o_vas.mp3" onclick="playAudio('audio/pro_o_vas.mp3')"></button></td>
+            </tr>
+            <tr class="search-row bg-gray-950/40 text-xs border-b border-gray-800">
+              <td colspan="7" class="py-2 px-4 text-gray-400">
+                <strong>Sentence:</strong> Я люблю вас <button class="audio-btn" data-tooltip="audio/pro_vy_sent1.mp3" onclick="playAudio('audio/pro_vy_sent1.mp3')"></button> (I love you). / Мы думаем о вас <button class="audio-btn" data-tooltip="audio/pro_vy_sent2.mp3" onclick="playAudio('audio/pro_vy_sent2.mp3')"></button> (We are thinking about you).
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-800/40 transition search-row">
+              <td class="py-3.5 px-3 font-bold text-white">They</td>
+              <td class="py-3.5 px-3">они <button class="audio-btn" data-tooltip="audio/pro_oni.mp3" onclick="playAudio('audio/pro_oni.mp3')"></button></td>
+              <td class="py-3.5 px-3">их <button class="audio-btn" data-tooltip="audio/pro_ikh.mp3" onclick="playAudio('audio/pro_ikh.mp3')"></button></td>
+              <td class="py-3.5 px-3">их <button class="audio-btn" data-tooltip="audio/pro_ikh.mp3" onclick="playAudio('audio/pro_ikh.mp3')"></button></td>
+              <td class="py-3.5 px-3">им <button class="audio-btn" data-tooltip="audio/pro_im_pl.mp3" onclick="playAudio('audio/pro_im_pl.mp3')"></button></td>
+              <td class="py-3.5 px-3">ими <button class="audio-btn" data-tooltip="audio/pro_imi.mp3" onclick="playAudio('audio/pro_imi.mp3')"></button></td>
+              <td class="py-3.5 px-3">о них <button class="audio-btn" data-tooltip="audio/pro_o_nikh.mp3" onclick="playAudio('audio/pro_o_nikh.mp3')"></button></td>
+            </tr>
+            <tr class="search-row bg-gray-950/40 text-xs border-b border-gray-800">
+              <td colspan="7" class="py-2 px-4 text-gray-400">
+                <strong>Sentence:</strong> Учитель знает их <button class="audio-btn" data-tooltip="audio/pro_oni_sent1.mp3" onclick="playAudio('audio/pro_oni_sent1.mp3')"></button> (The teacher knows them). / Мы помним о них <button class="audio-btn" data-tooltip="audio/pro_oni_sent2.mp3" onclick="playAudio('audio/pro_oni_sent2.mp3')"></button> (We remember them).
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 5: VERBS, CONJUGATIONS & ASPECTS -->
+    <section id="verbs" class="grammar-section space-y-6">
+      <div class="border-b border-gray-800 pb-3">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-clock-rotate-left text-red-500"></i> Verb Conjugations, Tenses & Aspect Pairs
+        </h3>
+        <p class="text-xs text-gray-400 mt-1">
+          Complete paradigms for First Conjugation (<strong>читать</strong> / <strong>прочитать</strong> - to read) and Second Conjugation (<strong>говорить</strong> / <strong>поговорить</strong> - to speak) across Present, Past, Future tenses, and Imperatives.
+        </p>
+      </div>
+
+      <!-- Conjugation Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- 1st Conjugation: читать -->
+        <div class="bg-[#1e1e1e] rounded-xl border border-gray-800 p-5 shadow-lg space-y-4">
+          <div class="border-b border-gray-800 pb-2">
+            <h4 class="text-base font-bold text-white flex items-center justify-between">
+              <span>1st Conjugation: читать <button class="audio-btn" data-tooltip="audio/v_chitat.mp3" onclick="playAudio('audio/v_chitat.mp3')"></button></span>
+              <span class="text-xs text-red-400 font-normal">Imperfective: To read</span>
+            </h4>
+            <p class="text-xs text-gray-400">Perfective pair: прочитать <button class="audio-btn" data-tooltip="audio/v_prochitat.mp3" onclick="playAudio('audio/v_prochitat.mp3')"></button> (To finish reading)</p>
+          </div>
+
+          <div class="space-y-3">
+            <h5 class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Present Tense (Настоящее время)</h5>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">я</span> читаю <button class="audio-btn" data-tooltip="audio/v_chitayu.mp3" onclick="playAudio('audio/v_chitayu.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">I read / am reading</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">мы</span> читаем <button class="audio-btn" data-tooltip="audio/v_chitayem.mp3" onclick="playAudio('audio/v_chitayem.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">We read</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">ты</span> читаешь <button class="audio-btn" data-tooltip="audio/v_chitayesh.mp3" onclick="playAudio('audio/v_chitayesh.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">You read (sg.)</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">вы</span> читаете <button class="audio-btn" data-tooltip="audio/v_chitayete.mp3" onclick="playAudio('audio/v_chitayete.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">You read (pl.)</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">он/она</span> читает <button class="audio-btn" data-tooltip="audio/v_chitayet.mp3" onclick="playAudio('audio/v_chitayet.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">He/She reads</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">они</span> читают <button class="audio-btn" data-tooltip="audio/v_chitayut.mp3" onclick="playAudio('audio/v_chitayut.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">They read</div>
+              </div>
+            </div>
+
+            <h5 class="text-xs font-semibold text-gray-300 uppercase tracking-wider pt-2">Past Tense (Прошедшее время)</h5>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">Masc:</span> читал <button class="audio-btn" data-tooltip="audio/v_chital.mp3" onclick="playAudio('audio/v_chital.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">He read</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">Fem:</span> читала <button class="audio-btn" data-tooltip="audio/v_chitala.mp3" onclick="playAudio('audio/v_chitala.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">She read</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">Neut:</span> читало <button class="audio-btn" data-tooltip="audio/v_chitalo.mp3" onclick="playAudio('audio/v_chitalo.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">It read</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">Plural:</span> читали <button class="audio-btn" data-tooltip="audio/v_chitali.mp3" onclick="playAudio('audio/v_chitali.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">They read</div>
+              </div>
+            </div>
+
+            <h5 class="text-xs font-semibold text-gray-300 uppercase tracking-wider pt-2">Future Tense & Imperatives</h5>
+            <div class="space-y-1.5 text-xs">
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <strong>Compound Future (Imp):</strong> я буду читать <button class="audio-btn" data-tooltip="audio/v_budu_chitat.mp3" onclick="playAudio('audio/v_budu_chitat.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">I will be reading</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <strong>Simple Future (Perf):</strong> я прочитаю <button class="audio-btn" data-tooltip="audio/v_prochitayu.mp3" onclick="playAudio('audio/v_prochitayu.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">I will read (and finish)</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <strong>Imperative (Command):</strong> читай! <button class="audio-btn" data-tooltip="audio/v_chitay.mp3" onclick="playAudio('audio/v_chitay.mp3')"></button> / читайте! <button class="audio-btn" data-tooltip="audio/v_chitayte.mp3" onclick="playAudio('audio/v_chitayte.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">Read! (sg. / pl.)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2nd Conjugation: говорить -->
+        <div class="bg-[#1e1e1e] rounded-xl border border-gray-800 p-5 shadow-lg space-y-4">
+          <div class="border-b border-gray-800 pb-2">
+            <h4 class="text-base font-bold text-white flex items-center justify-between">
+              <span>2nd Conjugation: говорить <button class="audio-btn" data-tooltip="audio/v_govorit.mp3" onclick="playAudio('audio/v_govorit.mp3')"></button></span>
+              <span class="text-xs text-red-400 font-normal">Imperfective: To speak</span>
+            </h4>
+            <p class="text-xs text-gray-400">Perfective pair: поговорить <button class="audio-btn" data-tooltip="audio/v_pogovorit.mp3" onclick="playAudio('audio/v_pogovorit.mp3')"></button> (To speak briefly)</p>
+          </div>
+
+          <div class="space-y-3">
+            <h5 class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Present Tense (Настоящее время)</h5>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">я</span> говорю <button class="audio-btn" data-tooltip="audio/v_govoryu.mp3" onclick="playAudio('audio/v_govoryu.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">I speak / am speaking</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">мы</span> говорим <button class="audio-btn" data-tooltip="audio/v_govorim.mp3" onclick="playAudio('audio/v_govorim.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">We speak</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">ты</span> говоришь <button class="audio-btn" data-tooltip="audio/v_govorish.mp3" onclick="playAudio('audio/v_govorish.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">You speak (sg.)</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">вы</span> говорите <button class="audio-btn" data-tooltip="audio/v_govorite.mp3" onclick="playAudio('audio/v_govorite.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">You speak (pl.)</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">он/она</span> говорит <button class="audio-btn" data-tooltip="audio/v_govorit_3sg.mp3" onclick="playAudio('audio/v_govorit_3sg.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">He/She speaks</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">они</span> говорят <button class="audio-btn" data-tooltip="audio/v_govoryat.mp3" onclick="playAudio('audio/v_govoryat.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">They speak</div>
+              </div>
+            </div>
+
+            <h5 class="text-xs font-semibold text-gray-300 uppercase tracking-wider pt-2">Past Tense (Прошедшее время)</h5>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">Masc:</span> говорил <button class="audio-btn" data-tooltip="audio/v_govoril.mp3" onclick="playAudio('audio/v_govoril.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">He spoke</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">Fem:</span> говорила <button class="audio-btn" data-tooltip="audio/v_govorila.mp3" onclick="playAudio('audio/v_govorila.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">She spoke</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">Neut:</span> говорило <button class="audio-btn" data-tooltip="audio/v_govorilo.mp3" onclick="playAudio('audio/v_govorilo.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">It spoke</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <span class="text-gray-400">Plural:</span> говорили <button class="audio-btn" data-tooltip="audio/v_govorili.mp3" onclick="playAudio('audio/v_govorili.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">They spoke</div>
+              </div>
+            </div>
+
+            <h5 class="text-xs font-semibold text-gray-300 uppercase tracking-wider pt-2">Future Tense & Imperatives</h5>
+            <div class="space-y-1.5 text-xs">
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <strong>Compound Future (Imp):</strong> я буду говорить <button class="audio-btn" data-tooltip="audio/v_budu_govorit.mp3" onclick="playAudio('audio/v_budu_govorit.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">I will be speaking</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <strong>Simple Future (Perf):</strong> я поговорику <button class="audio-btn" data-tooltip="audio/v_pogovoryu.mp3" onclick="playAudio('audio/v_pogovoryu.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">I will speak (briefly)</div>
+              </div>
+              <div class="bg-gray-900/60 p-2 rounded border border-gray-800 search-row">
+                <strong>Imperative (Command):</strong> говори! <button class="audio-btn" data-tooltip="audio/v_govori.mp3" onclick="playAudio('audio/v_govori.mp3')"></button> / говорите! <button class="audio-btn" data-tooltip="audio/v_govorite_imp.mp3" onclick="playAudio('audio/v_govorite_imp.mp3')"></button>
+                <div class="text-[10px] text-gray-500 italic">Speak! (sg. / pl.)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 6: PREPOSITIONS & CASES GUIDE -->
+    <section id="prepositions" class="grammar-section space-y-4">
+      <div class="border-b border-gray-800 pb-3">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-compass text-red-500"></i> Prepositions & Case Governance
+        </h3>
+        <p class="text-xs text-gray-400 mt-1">Common Russian prepositions categorized by the grammatical case they require.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+
+        <!-- Genitive Prepositions -->
+        <div class="bg-[#1e1e1e] p-4 rounded-xl border border-gray-800 space-y-2">
+          <h4 class="font-bold text-red-400 border-b border-gray-800 pb-1 flex justify-between">
+            <span>Genitive Prepositions</span> <span class="text-gray-500 font-normal">без, из, от, у, около</span>
+          </h4>
+          <ul class="space-y-2 text-gray-300">
+            <li class="search-row">
+              <strong>без</strong> <button class="audio-btn" data-tooltip="audio/prep_bez.mp3" onclick="playAudio('audio/prep_bez.mp3')"></button> (without): без книги <button class="audio-btn" data-tooltip="audio/prep_bez_knigi.mp3" onclick="playAudio('audio/prep_bez_knigi.mp3')"></button>
+              <div class="text-[10px] text-gray-500 italic">Without a book</div>
+            </li>
+            <li class="search-row">
+              <strong>из</strong> <button class="audio-btn" data-tooltip="audio/prep_iz.mp3" onclick="playAudio('audio/prep_iz.mp3')"></button> (from/out of): из дома <button class="audio-btn" data-tooltip="audio/prep_iz_doma.mp3" onclick="playAudio('audio/prep_iz_doma.mp3')"></button>
+              <div class="text-[10px] text-gray-500 italic">Out of the house</div>
+            </li>
+            <li class="search-row">
+              <strong>у</strong> <button class="audio-btn" data-tooltip="audio/prep_u.mp3" onclick="playAudio('audio/prep_u.mp3')"></button> (at/by/have): у окна <button class="audio-btn" data-tooltip="audio/prep_u_okna.mp3" onclick="playAudio('audio/prep_u_okna.mp3')"></button>
+              <div class="text-[10px] text-gray-500 italic">By the window</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Dative Prepositions -->
+        <div class="bg-[#1e1e1e] p-4 rounded-xl border border-gray-800 space-y-2">
+          <h4 class="font-bold text-red-400 border-b border-gray-800 pb-1 flex justify-between">
+            <span>Dative Prepositions</span> <span class="text-gray-500 font-normal">к, по</span>
+          </h4>
+          <ul class="space-y-2 text-gray-300">
+            <li class="search-row">
+              <strong>к</strong> <button class="audio-btn" data-tooltip="audio/prep_k.mp3" onclick="playAudio('audio/prep_k.mp3')"></button> (towards/to): к столу <button class="audio-btn" data-tooltip="audio/prep_k_stolu.mp3" onclick="playAudio('audio/prep_k_stolu.mp3')"></button>
+              <div class="text-[10px] text-gray-500 italic">Towards the table</div>
+            </li>
+            <li class="search-row">
+              <strong>по</strong> <button class="audio-btn" data-tooltip="audio/prep_po.mp3" onclick="playAudio('audio/prep_po.mp3')"></button> (along/by): по улице <button class="audio-btn" data-tooltip="audio/prep_po_ulitse.mp3" onclick="playAudio('audio/prep_po_ulitse.mp3')"></button>
+              <div class="text-[10px] text-gray-500 italic">Along the street</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Accusative Prepositions -->
+        <div class="bg-[#1e1e1e] p-4 rounded-xl border border-gray-800 space-y-2">
+          <h4 class="font-bold text-red-400 border-b border-gray-800 pb-1 flex justify-between">
+            <span>Accusative Prepositions</span> <span class="text-gray-500 font-normal">в, на, через, за</span>
+          </h4>
+          <ul class="space-y-2 text-gray-300">
+            <li class="search-row">
+              <strong>в</strong> <button class="audio-btn" data-tooltip="audio/prep_v_acc.mp3" onclick="playAudio('audio/prep_v_acc.mp3')"></button> (into - direction): в комнату <button class="audio-btn" data-tooltip="audio/prep_v_komnatu.mp3" onclick="playAudio('audio/prep_v_komnatu.mp3')"></button>
+              <div class="text-[10px] text-gray-500 italic">Into the room</div>
+            </li>
+            <li class="search-row">
+              <strong>через</strong> <button class="audio-btn" data-tooltip="audio/prep_cherez.mp3" onclick="playAudio('audio/prep_cherez.mp3')"></button> (through/across): через мост <button class="audio-btn" data-tooltip="audio/prep_cherez_most.mp3" onclick="playAudio('audio/prep_cherez_most.mp3')"></button>
+              <div class="text-[10px] text-gray-500 italic">Across the bridge</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Instrumental Prepositions -->
+        <div class="bg-[#1e1e1e] p-4 rounded-xl border border-gray-800 space-y-2">
+          <h4 class="font-bold text-red-400 border-b border-gray-800 pb-1 flex justify-between">
+            <span>Instrumental Prepositions</span> <span class="text-gray-500 font-normal">с, под, над, перед</span>
+          </h4>
+          <ul class="space-y-2 text-gray-300">
+            <li class="search-row">
+              <strong>с</strong> <button class="audio-btn" data-tooltip="audio/prep_s.mp3" onclick="playAudio('audio/prep_s.mp3')"></button> (with): с другом <button class="audio-btn" data-tooltip="audio/prep_s_drugom.mp3" onclick="playAudio('audio/prep_s_drugom.mp3')"></button>
+              <div class="text-[10px] text-gray-500 italic">With a friend</div>
+            </li>
+            <li class="search-row">
+              <strong>под</strong> <button class="audio-btn" data-tooltip="audio/prep_pod.mp3" onclick="playAudio('audio/prep_pod.mp3')"></button> (under): под столом <button class="audio-btn" data-tooltip="audio/prep_pod_stolom.mp3" onclick="playAudio('audio/prep_pod_stolom.mp3')"></button>
+              <div class="text-[10px] text-gray-500 italic">Under the table</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Prepositional Prepositions -->
+        <div class="bg-[#1e1e1e] p-4 rounded-xl border border-gray-800 space-y-2">
+          <h4 class="font-bold text-red-400 border-b border-gray-800 pb-1 flex justify-between">
+            <span>Prepositional Prepositions</span> <span class="text-gray-500 font-normal">о, в, на, при</span>
+          </h4>
+          <ul class="space-y-2 text-gray-300">
+            <li class="search-row">
+              <strong>о / об</strong> <button class="audio-btn" data-tooltip="audio/prep_o.mp3" onclick="playAudio('audio/prep_o.mp3')"></button> (about): о книге <button class="audio-btn" data-tooltip="audio/prep_o_knige.mp3" onclick="playAudio('audio/prep_o_knige.mp3')"></button>
+              <div class="text-[10px] text-gray-500 italic">About the book</div>
+            </li>
+            <li class="search-row">
+              <strong>в</strong> <button class="audio-btn" data-tooltip="audio/prep_v_prep.mp3" onclick="playAudio('audio/prep_v_prep.mp3')"></button> (in/inside - location): в комнате <button class="audio-btn" data-tooltip="audio/prep_v_komnate.mp3" onclick="playAudio('audio/prep_v_komnate.mp3')"></button>
+              <div class="text-[10px] text-gray-500 italic">In the room</div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Audio Checklist Modal -->
+  <div id="audioModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-[#1e1e1e] border border-gray-800 rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl">
+      <div class="p-5 border-b border-gray-800 flex items-center justify-between">
+        <div>
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-list-check text-red-500"></i> Required Audio Files Checklist
+          </h3>
+          <p class="text-xs text-gray-400 mt-0.5">Complete list of filenames needed inside your local <code class="text-red-300 font-mono">audio/</code> folder.</p>
+        </div>
+        <button onclick="toggleAudioListModal()" class="text-gray-400 hover:text-white text-lg p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-5 overflow-y-auto flex-grow space-y-2">
+        <div id="audioFileList" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+
+      <div class="p-4 border-t border-gray-800 bg-gray-950/60 flex justify-between items-center rounded-b-2xl">
+        <span id="audioCount" class="text-xs text-gray-400">Total files: 0</span>
+        <button onclick="copyAudioList()" class="bg-red-600 hover:bg-red-500 text-white text-xs px-3.5 py-2 rounded-lg transition font-medium flex items-center gap-2">
+          <i class="fa-solid fa-copy"></i> Copy File Names
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-800 py-6 text-center text-xs text-gray-500 bg-gray-950">
+    <div class="max-w-7xl mx-auto px-4">
+      Russian Grammar Reference Guide &bull; Ready for Free GitHub Pages Hosting
+    </div>
+  </footer>
+
+  <!-- JavaScript Application Script -->
+  <script>
+    let currentAudio = null;
+    let toastTimeout = null;
+
+    /**
+     * Handles playing audio files with user toast feedback
+     */
+    function playAudio(filePath) {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+
+      showToast("Loading Audio...", filePath, "fa-circle-play", "text-blue-400");
+
+      currentAudio = new Audio(filePath);
+
+      currentAudio.play().then(() => {
+        showToast("Playing Audio", filePath, "fa-volume-high", "text-green-400");
+      }).catch(error => {
+        console.warn(`Audio play failed for ${filePath}:`, error);
+        showToast("File Missing", `Expected in local folder: ${filePath}`, "fa-triangle-exclamation", "text-red-400");
+      });
     }
-    currentAudio = new Audio(filePath);
-    currentAudio.play().catch(err => console.error("Audio playback error:", err));
-  }
-</script>
 
+    /**
+     * Displays toast notification
+     */
+    function showToast(title, message, iconClass, iconColorClass) {
+      const toast = document.getElementById('toast');
+      const toastTitle = document.getElementById('toastTitle');
+      const toastMessage = document.getElementById('toastMessage');
+      const toastIcon = document.getElementById('toastIcon');
+
+      toastTitle.textContent = title;
+      toastMessage.textContent = message;
+      toastIcon.className = `fa-solid ${iconClass} ${iconColorClass} text-base`;
+
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+
+    /**
+     * Real-time search filter across all grammar sections
+     */
+    function filterContent() {
+      const input = document.getElementById('searchInput');
+      const filter = input.value.toLowerCase();
+      const rows = document.querySelectorAll('.search-row');
+
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        if (text.includes(filter)) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+
+    /**
+     * Extracts required audio paths from data-tooltip attributes
+     */
+    function getRequiredAudioFiles() {
+      const buttons = document.querySelectorAll('[data-tooltip]');
+      const filePaths = new Set();
+      buttons.forEach(btn => {
+        const path = btn.getAttribute('data-tooltip');
+        if (path) filePaths.add(path);
+      });
+      return Array.from(filePaths).sort();
+    }
+
+    /**
+     * Opens or closes the Audio File Checklist modal
+     */
+    function toggleAudioListModal() {
+      const modal = document.getElementById('audioModal');
+      const isHidden = modal.classList.contains('hidden');
+
+      if (isHidden) {
+        populateAudioList();
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+
+    /**
+     * Fills the audio modal list dynamically
+     */
+    function populateAudioList() {
+      const files = getRequiredAudioFiles();
+      const container = document.getElementById('audioFileList');
+      const countLabel = document.getElementById('audioCount');
+
+      container.innerHTML = '';
+      countLabel.textContent = `Total files required: ${files.length}`;
+
+      files.forEach(file => {
+        const item = document.createElement('div');
+        item.className = 'bg-gray-900/80 p-2 rounded border border-gray-800 text-gray-300 flex items-center justify-between';
+        item.innerHTML = `
+          <span class="truncate"><i class="fa-regular fa-file-audio text-red-400 mr-2"></i>${file}</span>
+          <button onclick="playAudio('${file}')" class="text-xs text-gray-400 hover:text-white ml-2"><i class="fa-solid fa-play"></i></button>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    /**
+     * Copies the full audio file list to clipboard
+     */
+    function copyAudioList() {
+      const files = getRequiredAudioFiles();
+      const textToCopy = files.join('\n');
+
+      const textarea = document.createElement('textarea');
+      textarea.value = textToCopy;
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast("Copied to Clipboard", "Audio filenames list copied to clipboard.", "fa-circle-check", "text-green-400");
+      } catch (err) {
+        console.error("Copy error:", err);
+      }
+      document.body.removeChild(textarea);
+    }
+  </script>
 </body>
 </html>
