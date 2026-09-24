@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Russian Plural Cases</title>
+  <style>
+    /* Dark theme layout matching your image */
+    body {
+      background-color: #0d0d0d;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th {
+      font-weight: 500;
+      color: #cccccc;
+      padding: 16px 12px;
+      border-bottom: 1px solid #2a2a2a;
+      font-size: 1.05rem;
+    }
+
+    td {
+      padding: 20px 12px;
+      border-bottom: 1px solid #1a1a1a;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    /* Red audio button styling */
+    .audio-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      background-color: transparent;
+      border: 2px solid #e53935;
+      border-radius: 50%;
+      cursor: pointer;
+      margin: 0 4px;
+      padding: 0;
+      vertical-align: middle;
+      transition: transform 0.1s ease, background-color 0.2s ease;
+    }
+
+    .audio-btn::before {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 4px 0 4px 6px;
+      border-color: transparent transparent transparent #e53935;
+      margin-left: 2px;
+    }
+
+    .audio-btn:hover {
+      transform: scale(1.15);
+      background-color: rgba(229, 57, 53, 0.2);
+    }
+
+    .audio-btn:active {
+      transform: scale(0.95);
+    }
+
+    .example-text {
+      font-style: italic;
+      color: #aaaaaa;
+    }
+  </style>
+</head>
+<body>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Case</th>
+        <th>Universal Pattern for All Genders</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Nominative Plural</strong></td>
+        <td>-ы / -и <button class="audio-btn" onclick="playAudio('audio/nom_pattern.mp3')"></button></td>
+        <td>
+          <button class="audio-btn" onclick="playAudio('audio/stoly.mp3')"></button> столы, 
+          <button class="audio-btn" onclick="playAudio('audio/knigi.mp3')"></button> книги
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Accusative Plural</strong></td>
+        <td>
+          Inanimate = Nom Plural<br><br>
+          Animate = Gen Plural
+        </td>
+        <td>
+          увидел <button class="audio-btn" onclick="playAudio('audio/stoly.mp3')"></button> столы <span class="example-text">(tables)</span> / 
+          увидел <button class="audio-btn" onclick="playAudio('audio/studentov.mp3')"></button> студентов <span class="example-text">(students)</span>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Genitive Plural</strong></td>
+        <td>
+          Varied (-ов, -ей, or drop the vowel) <button class="audio-btn" onclick="playAudio('audio/gen_pattern.mp3')"></button>
+        </td>
+        <td>
+          столов, книг <span class="example-text">(zero ending)</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // Global player instance to prevent overlapping audio
+  let currentAudio = null;
+
+  function playAudio(filePath) {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+    currentAudio = new Audio(filePath);
+    currentAudio.play().catch(err => console.error("Audio playback error:", err));
+  }
+</script>
+
+</body>
+</html>
